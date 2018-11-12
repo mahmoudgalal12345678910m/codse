@@ -167,7 +167,7 @@ client.on('message', async message => {
    if (!c);
    if (message.content.startsWith(prefix + 'file')) {
        let code = message.channel.awaitMessages(m => m.author.id === message.author.id,{time: 10000}, message.channel.send('**ضح رابط الملف للتحميل**')).then(co => {
-       let desc = message.channel.awaitMessages(m => m.author.id === message.author.id,{time: 10000, message.channel.send('**اكتب وصف **')).then(d => {    
+       let desc = message.channel.awaitMessages(m => m.author.id === message.author.id,{time: 10000}, message.channel.send('**اكتب وصف **')).then(d => {    
        let owner = message.channel.awaitMessages(m => m.author.id === message.author.id,{time: 10000}, message.channel.send('**اكتب المصدر **')).then(o => {    
                  var dd = d.first().content;
                  if (!dd) return;
