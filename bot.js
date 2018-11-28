@@ -622,7 +622,7 @@ ${thisMessage}\`\`\`
       })}});
 
 client.on('message', message => {
-    if(message.content == ('$id')) {    
+    if(message.content == ('8888id')) {    
  
              if (message.channel.type === 'dm') return message.reply('This Command Is Not Avaible In Dm\'s :x:');   
             var Canvas = module.require('canvas');
