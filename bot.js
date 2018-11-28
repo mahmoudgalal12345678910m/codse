@@ -751,17 +751,23 @@ client.on('message', message => {
 
 
  
-client.on('py',async py => {
-    if(py.content.startsWith(code + "py")) {
-  if(!py.channel.guild) return py.reply('This Command For Servers Only !');
-    let jscodes = py.guild.channels.find(`name`, "✵-「discord-py");
-    if(!jscodes) return py.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
-      let filter = m => m.author.id === py.author.id;
+
+
+
+
+
+
+client.on('message',async message => {
+    if(message.content.startsWith(code + "html")) {
+  if(!message.channel.guild) return message.reply('This Command For Servers Only !');
+    let jscodes = message.guild.channels.find(`name`, "✵-「discord-html");
+    if(!jscodes) return message.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
+      let filter = m => m.author.id === message.author.id;
       let thisMessage;
       let thisFalse;
-      py.channel.send(':pencil: **| من فضلك اكتب الكود الأن... :pencil2: **').then(msg => {
+      message.channel.send(':pencil: **| من فضلك اكتب الكود الأن... :pencil2: **').then(msg => {
  
-      py.channel.awaitMessages(filter, {
+      message.channel.awaitMessages(filter, {
         max: 1,
         time: 90000,
         errors: ['time']
@@ -772,7 +778,7 @@ client.on('py',async py => {
         let boi;
         msg.edit(':scroll: **| من فضلك اكتب وصف الكود الأن... :pencil2: **').then(msg => {
  
-            py.channel.awaitMessages(filter, {
+            message.channel.awaitMessages(filter, {
               max: 1,
               time: 90000,
               errors: ['time']
@@ -783,7 +789,7 @@ client.on('py',async py => {
               let boi2;
               msg.edit(':man_in_tuxedo: **| من فضلك اكتب من صنع هذا الكود الأن... :pencil2: **').then(msg => {
  
-                py.channel.awaitMessages(filter, {
+                message.channel.awaitMessages(filter, {
                   max: 1,
                   time: 90000,
                   errors: ['time']
@@ -792,7 +798,7 @@ client.on('py',async py => {
                   collected.first().delete();
                 boi2 = collected.first().content;
         msg.edit(':shield: **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
-   py.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
+   message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
           max: 1,
           time: 90000,
           errors: ['time']
@@ -800,7 +806,7 @@ client.on('py',async py => {
         .then(collected => {
           if(collected.first().content === 'لا') {
             msg.delete();
-            py.delete();
+            message.delete();
             thisFalse = false;
           }
           if(collected.first().content === 'نعم') {
@@ -809,12 +815,12 @@ client.on('py',async py => {
             collected.first().delete();
             jscodes.send(`@everyone | @here
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-**LastCodes © :arrow_down:**            
+**Malicious™ © :arrow_down:**            
 \`\`\`js
 ${thisMessage}\`\`\`
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 **وصف الكود**: ${boi}
-**تم النشر بواسطة**: ${py.author}
+**تم النشر بواسطة**: ${message.author}
 **المصدر / الشخص الذي صنع الكود**: ${boi2}`);
           }
         }
@@ -833,18 +839,17 @@ ${thisMessage}\`\`\`
 
 
 
- 
-client.on('html',async html => {
-    if(html.content.startsWith(code + "html")) {
-  if(!html.channel.guild) return html.reply('This Command For Servers Only !');
-    let jscodes = html.guild.channels.find(`name`, "✵-「discord-html");
-    if(!jscodes) return html.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
-      let filter = m => m.author.id === html.author.id;
+client.on('message',async message => {
+    if(message.content.startsWith(code + "py")) {
+  if(!message.channel.guild) return message.reply('This Command For Servers Only !');
+    let jscodes = message.guild.channels.find(`name`, "✵-「discord-py");
+    if(!jscodes) return message.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
+      let filter = m => m.author.id === message.author.id;
       let thisMessage;
       let thisFalse;
-      html.channel.send(':pencil: **| من فضلك اكتب الكود الأن... :pencil2: **').then(msg => {
+      message.channel.send(':pencil: **| من فضلك اكتب الكود الأن... :pencil2: **').then(msg => {
  
-      html.channel.awaitMessages(filter, {
+      message.channel.awaitMessages(filter, {
         max: 1,
         time: 90000,
         errors: ['time']
@@ -855,7 +860,7 @@ client.on('html',async html => {
         let boi;
         msg.edit(':scroll: **| من فضلك اكتب وصف الكود الأن... :pencil2: **').then(msg => {
  
-            html.channel.awaitMessages(filter, {
+            message.channel.awaitMessages(filter, {
               max: 1,
               time: 90000,
               errors: ['time']
@@ -866,7 +871,7 @@ client.on('html',async html => {
               let boi2;
               msg.edit(':man_in_tuxedo: **| من فضلك اكتب من صنع هذا الكود الأن... :pencil2: **').then(msg => {
  
-                html.channel.awaitMessages(filter, {
+                message.channel.awaitMessages(filter, {
                   max: 1,
                   time: 90000,
                   errors: ['time']
@@ -875,7 +880,7 @@ client.on('html',async html => {
                   collected.first().delete();
                 boi2 = collected.first().content;
         msg.edit(':shield: **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
-   html.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
+   message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
           max: 1,
           time: 90000,
           errors: ['time']
@@ -883,7 +888,7 @@ client.on('html',async html => {
         .then(collected => {
           if(collected.first().content === 'لا') {
             msg.delete();
-            html.delete();
+            message.delete();
             thisFalse = false;
           }
           if(collected.first().content === 'نعم') {
@@ -892,12 +897,91 @@ client.on('html',async html => {
             collected.first().delete();
             jscodes.send(`@everyone | @here
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-**LastCodes © :arrow_down:**            
+**Malicious™ © :arrow_down:**            
 \`\`\`js
 ${thisMessage}\`\`\`
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 **وصف الكود**: ${boi}
-**تم النشر بواسطة**: ${html.author}
+**تم النشر بواسطة**: ${message.author}
+**المصدر / الشخص الذي صنع الكود**: ${boi2}`);
+          }
+        }
+    );
+});
+      });
+    }
+      );
+    });
+}
+);
+      })}});
+
+
+
+client.on('message',async message => {
+    if(message.content.startsWith(code + "er")) {
+  if(!message.channel.guild) return message.reply('This Command For Servers Only !');
+    let jscodes = message.guild.channels.find(`name`, "✵-「discord-erice");
+    if(!jscodes) return message.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
+      let filter = m => m.author.id === message.author.id;
+      let thisMessage;
+      let thisFalse;
+      message.channel.send(':pencil: **| من فضلك اكتب الكود الأن... :pencil2: **').then(msg => {
+ 
+      message.channel.awaitMessages(filter, {
+        max: 1,
+        time: 90000,
+        errors: ['time']
+      })
+      .then(collected => {
+        collected.first().delete();
+        thisMessage = collected.first().content;
+        let boi;
+        msg.edit(':scroll: **| من فضلك اكتب وصف الكود الأن... :pencil2: **').then(msg => {
+ 
+            message.channel.awaitMessages(filter, {
+              max: 1,
+              time: 90000,
+              errors: ['time']
+            })
+            .then(collected => {
+              collected.first().delete();
+              boi = collected.first().content;
+              let boi2;
+              msg.edit(':man_in_tuxedo: **| من فضلك اكتب من صنع هذا الكود الأن... :pencil2: **').then(msg => {
+ 
+                message.channel.awaitMessages(filter, {
+                  max: 1,
+                  time: 90000,
+                  errors: ['time']
+                })
+                .then(collected => {
+                  collected.first().delete();
+                boi2 = collected.first().content;
+        msg.edit(':shield: **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
+   message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
+          max: 1,
+          time: 90000,
+          errors: ['time']
+        })
+        .then(collected => {
+          if(collected.first().content === 'لا') {
+            msg.delete();
+            message.delete();
+            thisFalse = false;
+          }
+          if(collected.first().content === 'نعم') {
+            if(thisFalse === false) return;
+            msg.edit(':dove: **| Done :white_check_mark:, تم بنجاح نشر كودك في روم الاكواد**');
+            collected.first().delete();
+            jscodes.send(`@everyone | @here
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+**Malicious™ © :arrow_down:**            
+\`\`\`js
+${thisMessage}\`\`\`
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+**وصف الكود**: ${boi}
+**تم النشر بواسطة**: ${message.author}
 **المصدر / الشخص الذي صنع الكود**: ${boi2}`);
           }
         }
@@ -917,10 +1001,84 @@ ${thisMessage}\`\`\`
 
 
 
-
-
-
+client.on('message',async message => {
+    if(message.content.startsWith(code + "file")) {
+  if(!message.channel.guild) return message.reply('This Command For Servers Only !');
+    let jscodes = message.guild.channels.find(`name`, "✵-「files_js");
+    if(!jscodes) return message.channel.send(":x:لم اجد الروم الخاص بنشر الاكواد");
+      let filter = m => m.author.id === message.author.id;
+      let thisMessage;
+      let thisFalse;
+      message.channel.send(':pencil: **| من فضلك اكتب رابط تحميل الملف... :pencil2: **').then(msg => {
  
+      message.channel.awaitMessages(filter, {
+        max: 1,
+        time: 90000,
+        errors: ['time']
+      })
+      .then(collected => {
+        collected.first().delete();
+        thisMessage = collected.first().content;
+        let boi;
+        msg.edit(':scroll: **| من فضلك اكتب وصف الكود الأن... :pencil2: **').then(msg => {
+ 
+            message.channel.awaitMessages(filter, {
+              max: 1,
+              time: 90000,
+              errors: ['time']
+            })
+            .then(collected => {
+              collected.first().delete();
+              boi = collected.first().content;
+              let boi2;
+              msg.edit(':man_in_tuxedo: **| من فضلك اكتب من صنع هذا الكود الأن... :pencil2: **').then(msg => {
+ 
+                message.channel.awaitMessages(filter, {
+                  max: 1,
+                  time: 90000,
+                  errors: ['time']
+                })
+                .then(collected => {
+                  collected.first().delete();
+                boi2 = collected.first().content;
+        msg.edit(':shield: **| [ هل انت متأكد من نشر الكود؟ | [ نعم ] او [ لا**');
+   message.channel.awaitMessages(response => response.content === 'نعم' || 'لا' && filter,{
+          max: 1,
+          time: 90000,
+          errors: ['time']
+        })
+        .then(collected => {
+          if(collected.first().content === 'لا') {
+            msg.delete();
+            message.delete();
+            thisFalse = false;
+          }
+          if(collected.first().content === 'نعم') {
+            if(thisFalse === false) return;
+            msg.edit(':dove: **| Done :white_check_mark:, تم بنجاح نشر كودك في روم الاكواد**');
+            collected.first().delete();
+            jscodes.send(`@everyone | @here
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+**Malicious™ © :arrow_down:**            
+\`\`\`js
+${thisMessage}\`\`\`
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+**وصف الكود**: ${boi}
+**تم النشر بواسطة**: ${message.author}
+**المصدر / الشخص الذي صنع الكود**: ${boi2}`);
+          }
+        }
+    );
+});
+      });
+    }
+      );
+    });
+}
+);
+      })}});
+
+
 
 
 
